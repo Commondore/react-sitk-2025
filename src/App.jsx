@@ -3,15 +3,12 @@ import "./App.css";
 import { Navbar } from "./components/navbar/navbar";
 import { Person } from "./components/person/person";
 import { users } from "./data";
+import { Simple } from "./components/simple";
+import { Title } from "./components/title";
 
 const App = () => {
-  const [title, setTitle] = useState("Добро пожаловать!");
   const [people, setPeople] = useState(users);
   const [counter, setCounter] = useState(0);
-
-  const changeTitle = () => {
-    setTitle("Новый заголовок");
-  };
 
   const changeName = () => {
     const copyPeople = [...people];
@@ -44,9 +41,7 @@ const App = () => {
     <>
       <Navbar />
       <div className="container">
-        <h1 className="main-title" onClick={changeTitle}>
-          {title} Счетчик: {counter}
-        </h1>
+        <Title />
         <button className="btn" onClick={changeName}>
           Изменить имя
         </button>
@@ -55,7 +50,7 @@ const App = () => {
         </button>
 
         <button className="btn" onClick={() => setCounter((counter) => counter + 1)}>
-          Увеличить счетчик
+          Счетчик: {counter}
         </button>
       </div>
       <div className="wrapper">
