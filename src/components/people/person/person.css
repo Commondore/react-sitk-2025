@@ -9,3 +9,10 @@
   font-size: 1.5rem;
   margin-bottom: 20px;
 }
+
+.field {
+  width: 100%;
+  padding: 6px;
+  font-size: 1.4em;
+  margin-bottom: 20px;
+}
