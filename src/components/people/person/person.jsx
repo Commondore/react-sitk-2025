@@ -1,9 +1,9 @@
 import "./person.css";
 
-export const Person = ({ name, age, image, increase, change }) => {
+export const Person = ({ name, age, image, increase, change, remove }) => {
   return (
     <div className="person">
-      <img width={150} src={image} alt="" />
+      <img width={150} src={image} alt="" onClick={remove} />
       <h3 className="title" onClick={increase}>
         Name: {name}
       </h3>

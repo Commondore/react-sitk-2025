@@ -29,13 +29,24 @@ const App = () => {
     });
   };
 
+  const removePerson = (id) => {
+    setPeople((people) => {
+      return people.filter((person) => person.id !== id);
+    });
+  };
+
   return (
     <>
       <Navbar />
       <div className="container">
         <Title />
         <Counter />
-        <People people={people} increaseAge={increaseAge} changeName={changeName} />
+        <People
+          people={people}
+          increaseAge={increaseAge}
+          changeName={changeName}
+          removePerson={removePerson}
+        />
       </div>
     </>
   );

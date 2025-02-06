@@ -1,6 +1,6 @@
 import { Person } from "./person/person";
 
-export const People = ({ people, increaseAge, changeName }) => {
+export const People = ({ people, increaseAge, changeName, removePerson }) => {
   return (
     <div className="wrapper">
       {people.map((person) => {
@@ -12,6 +12,7 @@ export const People = ({ people, increaseAge, changeName }) => {
             image={person.image}
             increase={() => increaseAge(person.id)}
             change={(event) => changeName(event, person.id)}
+            remove={() => removePerson(person.id)}
           />
         );
       })}
