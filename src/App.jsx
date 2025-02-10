@@ -3,19 +3,20 @@ import "./App.css";
 import { Navbar } from "./components/navbar/navbar";
 import { users } from "./data";
 import { Title } from "./components/title";
-import { Counter } from "./components/counter";
 import { People } from "./components/people";
+import { CounterTitle } from "./components/counter-title";
+import { ToggleButton } from "./components/toggle-button";
 
 const App = () => {
   const [people, setPeople] = useState(users);
+  const [isShow, setIsShow] = useState(true);
 
   const changeName = (event, id) => {
-    const copyPeople = [...people];
-    const index = copyPeople.findIndex((person) => person.id === id);
-    const person = { ...copyPeople[index] };
-    person.name = event.target.value;
-    copyPeople[index] = person;
-    setPeople(copyPeople);
+    setPeople((prevPeople) =>
+      prevPeople.map((person) =>
+        person.id === id ? { ...person, name: event.target.value } : person
+      )
+    );
   };
 
   const increaseAge = (id) => {
@@ -35,18 +36,33 @@ const App = () => {
     });
   };
 
+  const togglePeople = () => {
+    setIsShow((isShow) => !isShow);
+  };
+
   return (
     <>
       <Navbar />
       <div className="container">
         <Title />
-        <Counter />
-        <People
-          people={people}
-          increaseAge={increaseAge}
-          changeName={changeName}
-          removePerson={removePerson}
-        />
+
+        <ToggleButton isShow={isShow} toggle={togglePeople}>
+          Переключатель людей
+        </ToggleButton>
+
+        <CounterTitle units={people} text="Количество пользователей: " />
+
+        {isShow &&
+          (people.length ? (
+            <People
+              people={people}
+              increaseAge={increaseAge}
+              changeName={changeName}
+              removePerson={removePerson}
+            />
+          ) : (
+            <h2>Пользователей нет!</h2>
+          ))}
       </div>
     </>
   );

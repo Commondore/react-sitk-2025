@@ -37,6 +37,6 @@ body {
   cursor: pointer;
 
   &:hover {
-    background: #767676;
+    opacity: 0.7;
   }
 }
